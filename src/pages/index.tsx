@@ -1,5 +1,7 @@
+import Base from 'templates/Base'
+
 const Home = () => {
-  return <h1> Home </h1>
+  return <Base />
 }
 
 export default Home
