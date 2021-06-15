@@ -7,11 +7,28 @@ export interface IItemList {
 export interface IItemListApi {
   results: IItemApi[]
   available_filters: IAvailableFilters[]
+  filters: IFilters[]
 }
 
 export interface IAvailableFilters {
   id: string
   values: IAvailableFilterValue[]
+}
+export interface IFilters {
+  id: string
+  name: string
+  values: IFilterValue[]
+}
+
+export interface IFilterValue {
+  id: string
+  name: string
+  path_from_root: IPathFromRoot[]
+}
+
+export interface IPathFromRoot {
+  id: string
+  name: string
 }
 
 export interface IAvailableFilterValue {
@@ -35,6 +52,7 @@ export interface IItemApi {
     state_name: string
   }
   sold_quantity: number
+  category_id: string
 }
 
 export interface IPicture {
@@ -44,6 +62,7 @@ export interface IPicture {
 export interface IItem {
   id: string
   title: string
+  description?: string
   price: {
     currency: string
     amount: number
@@ -54,6 +73,8 @@ export interface IItem {
   free_shipping: boolean
   location: string
   sold_quantity: number
+  category_id: string
+  categories?: string[]
 }
 
 export interface IAuthor {

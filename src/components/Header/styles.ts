@@ -2,21 +2,23 @@ import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 0px 20px;
-    background: ${theme.colors.primaryYellow};
-    height: 100%;
     align-items: center;
+    display: grid;
+    gap: 0px 20px;
+    grid-template-columns: repeat(12, 1fr);
+    height: 100%;
+    max-width: ${theme.breakPoints.desktop};
+    width: 100%;
   `}
 `
 
 export const WrapperImage = styled.div`
-  width: 68px;
+  cursor: pointer;
+  grid-column: 1 / 2;
   height: 35px;
-  grid-column: 2 / 3;
+  width: 68px;
 `
 
 export const WrapperInput = styled.div`
-  grid-column: 3 / 12;
+  grid-column: 2 / 13;
 `

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import Base from 'templates/Base'
-import ItemList from 'components/ItemList'
+import ItemDetail from 'components/ItemDetail'
 import Breadcrumb from 'components/Breadcrumb'
 import { GetServerSidePropsContext } from 'next'
 
@@ -10,24 +10,23 @@ import { IItem } from 'models/Item'
 import { useItem } from 'contexts/item'
 
 type ItemsProps = {
-  categories: string[]
-  items: IItem[]
+  item: IItem
 }
 
-const Items = ({ items, categories }: ItemsProps) => {
+const ItemDetailPage = ({ item }: ItemsProps) => {
   const { dispatch } = useItem()
 
   useEffect(() => {
     dispatch({
-      type: 'SET_RESULTS',
-      payload: { items, categories }
+      type: 'SET_RESULTS_ITEM',
+      payload: item
     })
   }, [])
 
   return (
     <Base>
-      <Breadcrumb categories={categories} />
-      <ItemList items={items} />
+      <Breadcrumb categories={item.categories as string[]} />
+      <ItemDetail item={item} />
     </Base>
   )
 }
@@ -39,17 +38,13 @@ export const getServerSideProps = async (
   const emptyProps = { items: [], categories: [] }
 
   try {
-    const result = await ContentAPI.contentAPI.get(`/items`, {
-      params: {
-        q: params.search
-      }
-    })
+    const result = await ContentAPI.contentAPI.get(`/items/${params.id}`)
 
     if (result.data) {
-      const { items, categories } = result.data
+      const item: IItem = result.data
 
       return {
-        props: { items, categories }
+        props: { item }
       }
     }
 
@@ -65,4 +60,4 @@ export const getServerSideProps = async (
   }
 }
 
-export default Items
+export default ItemDetailPage

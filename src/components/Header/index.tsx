@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import Image from 'components/Image'
 import SearchInput from 'components/SearchInput'
@@ -11,12 +12,12 @@ interface ILogoData {
 }
 
 const Header = () => {
-  const search = ''
+  const router = useRouter()
+  const search = router.query.search ? (router.query.search as string) : ''
   const logoData: ILogoData = {
     href: '/img/logo_ml2x.png',
     alt: 'Meli Logo'
   }
-  const router = useRouter()
 
   const handleSubmit = (value: string) => {
     if (!value) return
@@ -25,16 +26,18 @@ const Header = () => {
 
   return (
     <S.Wrapper>
-      <S.WrapperImage>
-        <Image
-          width={68}
-          height={35}
-          alt={logoData.alt}
-          quality={25}
-          src={logoData.href}
-          showError={false}
-        />
-      </S.WrapperImage>
+      <Link href={'/'}>
+        <S.WrapperImage>
+          <Image
+            width={68}
+            height={35}
+            alt={logoData.alt}
+            quality={25}
+            src={logoData.href}
+            showError={false}
+          />
+        </S.WrapperImage>
+      </Link>
       <S.WrapperInput>
         <SearchInput handleSubmit={handleSubmit} search={search} />
       </S.WrapperInput>

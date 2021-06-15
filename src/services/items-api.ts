@@ -6,7 +6,10 @@ import {
   IItemApi,
   IItemListApi,
   IAvailableFilters,
-  IAvailableFilterValue
+  IAvailableFilterValue,
+  IFilters,
+  IFilterValue,
+  IPathFromRoot
 } from 'models/Item'
 
 class ItemsService {
@@ -18,22 +21,48 @@ class ItemsService {
   readonly limitResults: number = 4
 
   async getItem(itemId: string) {
-    const [itemData, descriptionData] = await Promise.all([
-      await ContentAPI.contentAPIMeli.get(`/items/${itemId}`),
-      await ContentAPI.contentAPIMeli.get(`/items/${itemId}/description`)
-    ])
+    const itemData = await ContentAPI.contentAPIMeli
+      .get(`/items/${itemId}`)
+      .catch(() => {
+        return undefined
+      })
 
-    const transformData = {
-      ...this.transformDataItem(itemData.data)
+    if (itemData) {
+      const descriptionData = await ContentAPI.contentAPIMeli
+        .get(`/items/${itemId}/description`)
+        .catch(() => {
+          return undefined
+        })
+
+      const transformData = {
+        ...this.transformDataItem(itemData.data)
+      }
+
+      const searchDataByCategory = await ContentAPI.contentAPIMeli.get(
+        `/sites/MLA/search`,
+        {
+          params: {
+            category: transformData.category_id,
+            limit: 1
+          }
+        }
+      )
+
+      const { data: itemsData }: { data: IItemListApi } = searchDataByCategory
+
+      const categories = this.getCategoriesByItem(itemsData.filters)
+
+      const item = {
+        author: this.autor,
+        ...transformData,
+        description: descriptionData ? descriptionData.data.plain_text : '',
+        categories
+      }
+
+      return item
+    } else {
+      return null
     }
-
-    const item = {
-      author: this.autor,
-      ...transformData,
-      description: descriptionData.data.plain_text
-    }
-
-    return item || {}
   }
 
   async getItems(q: string): Promise<IItemList> {
@@ -59,6 +88,32 @@ class ItemsService {
     }
   }
 
+  getCategoriesByItem(filters: IFilters[]): string[] {
+    const categories = filters.filter((filter) => {
+      return filter.id === 'category'
+    })
+
+    if (categories.length > 0) {
+      const categoriesValues = categories[0].values.map(
+        (category: IFilterValue) => {
+          return category.path_from_root
+        }
+      )
+
+      if (categoriesValues.length > 0) {
+        const categoriesTranformed = categoriesValues[0].map(
+          (category: IPathFromRoot) => {
+            return category.name
+          }
+        )
+
+        return categoriesTranformed.filter((item: string, index: number) => {
+          return categoriesTranformed.indexOf(item) === index
+        })
+      }
+    }
+    return []
+  }
   getCategories(availableFilters: IAvailableFilters[]): string[] {
     const categories = availableFilters.filter((filter) => {
       return filter.id === 'category'
@@ -94,7 +149,8 @@ class ItemsService {
       condition: item.condition,
       free_shipping: item.shipping.free_shipping,
       location: item.address ? item.address.state_name : '',
-      sold_quantity: item.sold_quantity
+      sold_quantity: item.sold_quantity,
+      category_id: item.category_id
     }
   }
 }

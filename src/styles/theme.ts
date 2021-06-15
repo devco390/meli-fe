@@ -9,6 +9,10 @@ export default {
     normal: FONT_WEIGHT.NORMAL,
     bold: FONT_WEIGHT.BOLD
   },
+  breakPoints: {
+    desktop: '1152px',
+    tablet: '768px'
+  },
   colors: {
     primaryYellow: '#ffe600',
     primaryBlue: '#3483fa',
