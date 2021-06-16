@@ -80,7 +80,7 @@
   },
   "browserslist": "> 0.25%, not dead, not ie 11",
   "engines": {
-    "node": "15.9.0",
+    "node": "14.x",
     "npm": "7.5.3"
   }
 }
