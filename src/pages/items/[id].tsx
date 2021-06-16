@@ -3,7 +3,7 @@ import ItemDetail from 'components/ItemDetail'
 import Breadcrumb from 'components/Breadcrumb'
 import { GetServerSidePropsContext } from 'next'
 
-import * as S from './styles'
+import { NoData } from '.'
 
 import ContentAPI from 'services/content-api'
 import { IItem } from 'models/Item'
@@ -23,7 +23,7 @@ const ItemDetailPage = ({ item, loading }: ItemsProps & PageProps) => {
           <ItemDetail item={item} loading={loading} />
         </>
       ) : (
-        <S.NoData>Ítem no disponible.</S.NoData>
+        <NoData>Ítem no disponible.</NoData>
       )}
     </Base>
   )

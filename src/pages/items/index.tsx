@@ -3,11 +3,18 @@ import ItemList from 'components/ItemList'
 import Breadcrumb from 'components/Breadcrumb'
 import { GetServerSidePropsContext } from 'next'
 
-import * as S from './styles'
-
 import ContentAPI from 'services/content-api'
 import { IItem } from 'models/Item'
 import { PageProps } from 'pages'
+
+import styled, { css } from 'styled-components'
+
+export const NoData = styled.span`
+  ${({ theme }) => css`
+    ${theme.typography.smallBold}
+    padding-top: 1rem;
+  `}
+`
 
 type ItemsProps = {
   categories: string[]
@@ -23,7 +30,7 @@ const Items = ({ items, categories, loading }: ItemsProps & PageProps) => {
           <ItemList items={items} loading={loading} />
         </>
       ) : (
-        <S.NoData>La búsqueda no genero resultados.</S.NoData>
+        <NoData>La búsqueda no genero resultados.</NoData>
       )}
     </Base>
   )
