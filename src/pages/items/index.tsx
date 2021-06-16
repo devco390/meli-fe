@@ -7,7 +7,6 @@ import { GetServerSidePropsContext } from 'next'
 
 import ContentAPI from 'services/content-api'
 import { IItem } from 'models/Item'
-import { useItem } from 'contexts/item'
 import { PageProps } from 'pages'
 
 type ItemsProps = {
@@ -16,15 +15,6 @@ type ItemsProps = {
 }
 
 const Items = ({ items, categories, loading }: ItemsProps & PageProps) => {
-  const { dispatch } = useItem()
-
-  useEffect(() => {
-    dispatch({
-      type: 'SET_RESULTS',
-      payload: { items, categories }
-    })
-  }, [])
-
   return (
     <Base>
       <Breadcrumb categories={categories} />
