@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
-
 import Base from 'templates/Base'
 import ItemList from 'components/ItemList'
 import Breadcrumb from 'components/Breadcrumb'
 import { GetServerSidePropsContext } from 'next'
+
+import * as S from './styles'
 
 import ContentAPI from 'services/content-api'
 import { IItem } from 'models/Item'
@@ -17,8 +17,14 @@ type ItemsProps = {
 const Items = ({ items, categories, loading }: ItemsProps & PageProps) => {
   return (
     <Base>
-      <Breadcrumb categories={categories} />
-      <ItemList items={items} loading={loading} />
+      {items.length > 0 ? (
+        <>
+          <Breadcrumb categories={categories} />
+          <ItemList items={items} loading={loading} />
+        </>
+      ) : (
+        <S.NoData>La búsqueda no genero resultados.</S.NoData>
+      )}
     </Base>
   )
 }
