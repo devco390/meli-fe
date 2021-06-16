@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
         'image'
         'pricebox'
         'description';
-      grid-template-columns: 1fr;
+      grid-template-columns: 100%;
       grid-template-rows: auto auto auto;
     }
   `}
