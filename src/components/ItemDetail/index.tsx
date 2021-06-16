@@ -1,18 +1,24 @@
 import NumberFormat from 'react-number-format'
 
 import Image from 'components/Image'
+import Loader from 'components/Loader'
 
 import { IItem } from 'models/Item'
 import * as S from './styles'
 
 type ItemDetailProps = {
   item: IItem
+  loading: boolean
 }
 
-const ItemDetail = ({ item }: ItemDetailProps) => {
+const ItemDetail = ({ item, loading }: ItemDetailProps) => {
   const { condition, sold_quantity, picture, title, price, description } = item
 
-  return (
+  return loading ? (
+    <>
+      <Loader loading={loading} />
+    </>
+  ) : (
     <S.Wrapper>
       <S.WrapperImage>
         <Image width={'100%'} height={'100%'} src={picture} alt="Item Image" />

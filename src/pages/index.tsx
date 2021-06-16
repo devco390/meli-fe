@@ -1,7 +1,16 @@
 import Base from 'templates/Base'
+import Loader from 'components/Loader'
 
-const Home = () => {
-  return <Base />
+export interface PageProps {
+  loading: boolean
+}
+
+const Home = ({ loading }: PageProps) => {
+  return (
+    <Base>
+      <Loader loading={loading} />
+    </Base>
+  )
 }
 
 export default Home

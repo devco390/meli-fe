@@ -3,15 +3,23 @@ const FONT_WEIGHT = {
   NORMAL: 400
 }
 
+const SIZE_RESOLUTION = {
+  DESKTOP: '1152px',
+  MOBILE: '768px'
+}
+
 export default {
   font: {
     family: 'Roboto Condensed',
     normal: FONT_WEIGHT.NORMAL,
     bold: FONT_WEIGHT.BOLD
   },
-  breakPoints: {
-    desktop: '1152px',
-    tablet: '768px'
+  size: {
+    desktop: SIZE_RESOLUTION.DESKTOP,
+    mobile: SIZE_RESOLUTION.MOBILE
+  },
+  breakPoint: {
+    mobile: `(max-width: ${SIZE_RESOLUTION.MOBILE})`
   },
   colors: {
     primaryYellow: '#ffe600',

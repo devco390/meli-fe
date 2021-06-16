@@ -8,13 +8,14 @@ import { GetServerSidePropsContext } from 'next'
 import ContentAPI from 'services/content-api'
 import { IItem } from 'models/Item'
 import { useItem } from 'contexts/item'
+import { PageProps } from 'pages'
 
 type ItemsProps = {
   categories: string[]
   items: IItem[]
 }
 
-const Items = ({ items, categories }: ItemsProps) => {
+const Items = ({ items, categories, loading }: ItemsProps & PageProps) => {
   const { dispatch } = useItem()
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const Items = ({ items, categories }: ItemsProps) => {
   return (
     <Base>
       <Breadcrumb categories={categories} />
-      <ItemList items={items} />
+      <ItemList items={items} loading={loading} />
     </Base>
   )
 }

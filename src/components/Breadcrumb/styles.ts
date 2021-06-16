@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   ${({ theme }) => css`
     display: inline-flex;
     flex-wrap: wrap;
-    max-width: ${theme.breakPoints.desktop};
+    max-width: ${theme.size.desktop};
     padding: 1rem 0;
     width: 100%;
   `}

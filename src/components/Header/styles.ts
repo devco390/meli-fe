@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     gap: 0px 20px;
     grid-template-columns: repeat(12, 1fr);
     height: 100%;
-    max-width: ${theme.breakPoints.desktop};
+    max-width: ${theme.size.desktop};
     width: 100%;
   `}
 `

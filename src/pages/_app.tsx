@@ -4,10 +4,30 @@ import Head from 'next/head'
 import { ThemeProvider } from 'styled-components'
 import { ItemProvider } from 'contexts/item'
 
+import { useEffect, useState } from 'react'
+import { Router } from 'next/router'
 import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [loading, setLoading] = useState<boolean>(false)
+
+  useEffect(() => {
+    const start = () => {
+      setLoading(true)
+    }
+    const end = () => {
+      setLoading(false)
+    }
+    Router.events.on('routeChangeStart', start)
+    Router.events.on('routeChangeComplete', end)
+    Router.events.on('routeChangeError', end)
+    return () => {
+      Router.events.off('routeChangeStart', start)
+      Router.events.off('routeChangeComplete', end)
+      Router.events.off('routeChangeError', end)
+    }
+  }, [])
   return (
     <ItemProvider>
       <ThemeProvider theme={theme}>
@@ -50,7 +70,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           />
         </Head>
         <GlobalStyles />
-        <Component {...pageProps} />
+        <Component {...pageProps} loading={loading} />
       </ThemeProvider>
     </ItemProvider>
   )

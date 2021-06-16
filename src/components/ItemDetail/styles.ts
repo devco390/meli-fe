@@ -5,25 +5,58 @@ export const Wrapper = styled.div`
     background: #ffffff;
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto auto;
-    max-width: ${theme.breakPoints.desktop};
+    grid-template-areas:
+      'image image image image image image . pricebox pricebox pricebox'
+      'image image image image image image . pricebox pricebox pricebox'
+      'image image image image image image . pricebox pricebox pricebox'
+      'image image image image image image . . . .'
+      'image image image image image image . . . .'
+      'image image image image image image . . . .'
+      '. . . . . . . . . .'
+      'description description description description description description description description description description'
+      'description description description description description description description description description description';
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(9, auto);
+    max-width: ${theme.size.desktop};
     width: 100%;
+    @media screen and ${theme.breakPoint.mobile} {
+      grid-template-areas:
+        'image'
+        'pricebox'
+        'description';
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+    }
   `}
 `
 
 export const WrapperImage = styled.div`
   ${({ theme }) => css`
-    display: grid;
-    gap: 20px;
-    grid-column: 1/8;
-    grid-template-rows: repeat(6, 4rem);
+    grid-area: image;
     padding: 32px;
+    @media screen and ${theme.breakPoint.mobile} {
+      display: flex;
+      justify-content: center;
+    }
+
     > div {
-      grid-row: 1/7;
+      height: 100%;
+      width: 100%;
+      @media screen and ${theme.breakPoint.mobile} {
+        height: 180px;
+        width: 180px;
+      }
       > div {
         height: 100%;
         width: 100%;
+        > div {
+          height: 100%;
+          width: 100%;
+          img {
+            height: 100%;
+            width: 100%;
+          }
+        }
       }
     }
 
@@ -34,7 +67,7 @@ export const WrapperImage = styled.div`
 `
 export const WrapperPricebox = styled.div`
   ${({ theme }) => css`
-    grid-column: 10/13;
+    grid-area: pricebox;
   `}
 `
 export const Pricebox = styled.div`
@@ -82,7 +115,7 @@ export const PriceboxBuy = styled.div`
 `
 export const Description = styled.div`
   ${({ theme }) => css`
-    grid-column: 1/13;
+    grid-area: description;
     padding: 0 32px 32px 32px;
     h3 {
       ${theme.typography.headline4}
