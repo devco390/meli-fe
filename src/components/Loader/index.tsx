@@ -1,6 +1,6 @@
 import * as S from './styles'
 
-type LoaderProps = {
+export type LoaderProps = {
   loading: boolean
 }
 const Loader = ({ loading }: LoaderProps) => (

@@ -1,6 +1,6 @@
 import * as S from './styles'
 
-type breadCrumbProps = {
+export type breadCrumbProps = {
   categories: string[]
 }
 

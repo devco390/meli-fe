@@ -13,7 +13,8 @@ interface ILogoData {
 
 const Header = () => {
   const router = useRouter()
-  const search = router.query.search ? (router.query.search as string) : ''
+  const search =
+    router.query && router.query.search ? (router.query.search as string) : ''
   const logoData: ILogoData = {
     href: '/img/logo_ml2x.png',
     alt: 'Meli Logo'

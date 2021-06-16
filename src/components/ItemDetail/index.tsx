@@ -6,7 +6,7 @@ import Loader from 'components/Loader'
 import { IItem } from 'models/Item'
 import * as S from './styles'
 
-type ItemDetailProps = {
+export type ItemDetailProps = {
   item: IItem
   loading: boolean
 }

@@ -1,6 +1,9 @@
 {
   "presets": ["next/babel", "@babel/preset-typescript"],
   "plugins": [
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    ["@babel/plugin-proposal-private-methods", { "loose": true }],
+    ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
     [
       "babel-plugin-styled-components",
       {
@@ -18,7 +21,8 @@
             "ssr": false,
             "displayName": false
           }
-        ]
+        ],
+        ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
       ]
     }
   }

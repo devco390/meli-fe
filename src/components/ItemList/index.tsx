@@ -4,7 +4,7 @@ import * as S from './styles'
 import ItemCard from 'components/ItemCard'
 import Loader from 'components/Loader'
 
-type ItemListProps = {
+export type ItemListProps = {
   items: IItem[]
   loading: boolean
 }

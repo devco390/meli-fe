@@ -1,12 +1,12 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import Loader from '.'
+import Loader, { LoaderProps } from '.'
 
 export default {
   title: 'Loader',
   component: Loader
 } as Meta
 
-const Template = (args: any) => <Loader {...args}></Loader>
+const Template = (args: LoaderProps) => <Loader {...args}></Loader>
 
-export const Default: Story<any> = Template.bind({})
-Default.args = {}
+export const Default: Story<LoaderProps> = Template.bind({})
+Default.args = { loading: true }

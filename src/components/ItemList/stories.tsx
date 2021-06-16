@@ -1,12 +1,16 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import ItemList from '.'
+import ItemList, { ItemListProps } from '.'
+import { itemListMock } from './mock'
 
 export default {
   title: 'ItemList',
   component: ItemList
 } as Meta
 
-const Template = (args: any) => <ItemList {...args}></ItemList>
+const Template = (args: ItemListProps) => <ItemList {...args}></ItemList>
 
-export const Default: Story<any> = Template.bind({})
-Default.args = {}
+export const Default: Story<ItemListProps> = Template.bind({})
+Default.args = {
+  items: itemListMock,
+  loading: false
+}

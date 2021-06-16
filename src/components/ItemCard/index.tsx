@@ -4,7 +4,7 @@ import * as S from './styles'
 import Image from 'components/Image'
 import Link from 'next/link'
 
-type ItemCardProps = {
+export type ItemCardProps = {
   item: IItem
 }
 
