@@ -15,7 +15,6 @@ type ItemsProps = {
 }
 
 const ItemDetailPage = ({ item, loading }: ItemsProps & PageProps) => {
-  console.log(item)
   return (
     <Base>
       {item ? (

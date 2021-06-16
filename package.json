@@ -9,7 +9,7 @@
     "start": "next start",
     "test": "jest",
     "test:watch": "yarn test --watch",
-    "lint": "eslint src",
+    "lint": "eslint src --max-warnings=0",
     "lint:fix": "eslint src --fix",
     "generate": "yarn plop --plopfile generators/plopfile.js",
     "storybook": "start-storybook -p 6006 ./public -p 6006",
@@ -77,5 +77,10 @@
     "lint-staged": ">=10",
     "plop": "^2.7.4",
     "prettier": "^2.3.1"
+  },
+  "browserslist": "> 0.25%, not dead, not ie 11",
+  "engines": {
+    "node": "15.9.0",
+    "npm": "7.5.3"
   }
 }

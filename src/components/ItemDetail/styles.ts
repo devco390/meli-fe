@@ -66,14 +66,10 @@ export const WrapperImage = styled.div`
   `}
 `
 export const WrapperPricebox = styled.div`
-  ${({ theme }) => css`
-    grid-area: pricebox;
-  `}
+  grid-area: pricebox;
 `
 export const Pricebox = styled.div`
-  ${({ theme }) => css`
-    padding: 32px;
-  `}
+  padding: 32px;
 `
 export const PriceboxState = styled.div`
   ${({ theme }) => css`
