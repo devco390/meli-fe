@@ -81,7 +81,7 @@ export const PriceboxState = styled.div`
     padding-bottom: 16px;
   `}
 `
-export const PriceboxTitle = styled.div`
+export const PriceboxTitle = styled.h4`
   ${({ theme }) => css`
     ${theme.typography.headline4}
     padding-bottom: 32px;

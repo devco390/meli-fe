@@ -6,7 +6,7 @@ export type LoaderProps = {
 const Loader = ({ loading }: LoaderProps) => (
   <>
     {loading && (
-      <S.Wrapper>
+      <S.Wrapper data-testid={'loader-wrapper'}>
         <S.WrapperLoader>
           {[...Array(8).keys()].map((_, index: number) => (
             <span key={index} className={`circle circle-${index + 1}`}></span>

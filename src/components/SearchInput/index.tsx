@@ -26,9 +26,10 @@ const SearchInput = ({ handleSubmit, search }: SearchInputProps) => {
   }
 
   return (
-    <S.Wrapper onSubmit={onHandleSubmit}>
+    <S.Wrapper onSubmit={onHandleSubmit} role={'searchForm'}>
       <input
         type="text"
+        role={'searchInput'}
         placeholder="Nunca dejes de buscar"
         value={value}
         onChange={handleChangeInput}

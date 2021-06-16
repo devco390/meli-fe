@@ -9,20 +9,20 @@ export type ItemListProps = {
   loading: boolean
 }
 
-const ItemList = ({ items, loading }: ItemListProps) => (
-  <S.Wrapper>
-    {loading ? (
-      <Loader loading={loading} />
-    ) : (
-      items.map((item: IItem) => {
+const ItemList = ({ items, loading }: ItemListProps) => {
+  return loading ? (
+    <Loader loading={loading} />
+  ) : (
+    <S.Wrapper role={'wrapperItemList'}>
+      {items.map((item: IItem) => {
         return (
           <S.WrapperCard key={item.id}>
             <ItemCard item={item} />
           </S.WrapperCard>
         )
-      })
-    )}
-  </S.Wrapper>
-)
+      })}
+    </S.Wrapper>
+  )
+}
 
 export default ItemList

@@ -2,7 +2,7 @@ import { IItem } from 'models/Item'
 
 export const itemDetailMock: IItem = {
   id: 'MLA880950088',
-  title: 'Pug Hembra ',
+  title: 'Pug Hembra',
   price: {
     currency: 'ARS',
     amount: 69999,
@@ -14,6 +14,6 @@ export const itemDetailMock: IItem = {
   location: '',
   sold_quantity: 1,
   category_id: 'MLA1073',
-  description: '',
+  description: 'Cachorro hembra de Pug Hembra',
   categories: ['Animales y Mascotas', 'Perros', 'Perros de Raza']
 }

@@ -38,8 +38,8 @@ const Skeleton = ({
       <ContentLoader
         width="100%"
         height="114px"
-        role={'skeleton-card'}
-        uniqueKey={'skeleton-card'}
+        role={'skeleton-detail'}
+        uniqueKey={'skeleton-detail'}
         backgroundColor={elementBackgroundColor}
         style={{ backgroundColor: contentBackgroundColor, marginBottom }}
       >

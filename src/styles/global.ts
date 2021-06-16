@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components'
+import { createGlobalStyle, css, DefaultTheme } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
     }
   } 
 
-  ${({ theme }) => css`
+  ${({ theme }: { theme: DefaultTheme }) => css`
     html {
       height: 100%;
     }

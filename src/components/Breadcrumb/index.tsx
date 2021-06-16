@@ -4,12 +4,12 @@ export type breadCrumbProps = {
   categories: string[]
 }
 
-const limitItems = 3
+export const maxCategoryToShow = 5
 
 const Breadcrumb = ({ categories }: breadCrumbProps) => {
   const categoriesFiltered = categories.filter(
     (category: string, index: number) => {
-      return category.length > 0 && index <= limitItems
+      return category.length > 0 && index < maxCategoryToShow
     }
   )
 

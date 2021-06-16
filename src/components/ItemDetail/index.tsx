@@ -11,6 +11,14 @@ export type ItemDetailProps = {
   loading: boolean
 }
 
+export const getConditionText = (
+  condition: string,
+  sold_quantity: number
+): string => {
+  return `${
+    condition === 'new' ? 'Nuevo' : 'Usado'
+  } - ${sold_quantity} Vendidos`
+}
 const ItemDetail = ({ item, loading }: ItemDetailProps) => {
   const { condition, sold_quantity, picture, title, price, description } = item
 
@@ -19,24 +27,26 @@ const ItemDetail = ({ item, loading }: ItemDetailProps) => {
       <Loader loading={loading} />
     </>
   ) : (
-    <S.Wrapper>
+    <S.Wrapper role={'wrapperItemDetail'}>
       <S.WrapperImage>
-        <Image width={'100%'} height={'100%'} src={picture} alt="Item Image" />
+        <Image
+          width={'100%'}
+          height={'100%'}
+          src={picture}
+          alt="Item Image Detail"
+        />
       </S.WrapperImage>
       <S.WrapperPricebox>
         <S.Pricebox>
           <S.PriceboxState>
-            <span>
-              {condition === 'new' ? 'Nuevo' : 'Usado'} - {sold_quantity}{' '}
-              Vendidos
-            </span>
+            <span>{getConditionText(condition, sold_quantity)}</span>
           </S.PriceboxState>
           <S.PriceboxTitle>{title}</S.PriceboxTitle>
           <S.PriceboxPrice>
             <NumberFormat
               value={price ? price.amount : 0}
               displayType="text"
-              thousandSeparator={true}
+              thousandSeparator={','}
               prefix={'$ '}
             />
           </S.PriceboxPrice>

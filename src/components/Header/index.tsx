@@ -14,7 +14,9 @@ interface ILogoData {
 const Header = () => {
   const router = useRouter()
   const search =
-    router.query && router.query.search ? (router.query.search as string) : ''
+    router && router.query && router.query.search
+      ? (router.query.search as string)
+      : ''
   const logoData: ILogoData = {
     href: '/img/logo_ml2x.png',
     alt: 'Meli Logo'
@@ -30,6 +32,7 @@ const Header = () => {
       <Link href={'/'}>
         <S.WrapperImage>
           <Image
+            data-testid={'logo-meli'}
             width={68}
             height={35}
             alt={logoData.alt}
@@ -39,7 +42,7 @@ const Header = () => {
           />
         </S.WrapperImage>
       </Link>
-      <S.WrapperInput>
+      <S.WrapperInput data-testid={'input-search'}>
         <SearchInput handleSubmit={handleSubmit} search={search} />
       </S.WrapperInput>
     </S.Wrapper>

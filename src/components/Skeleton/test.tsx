@@ -9,10 +9,10 @@ describe('<Skeleton />', () => {
     expect(screen.getByRole('skeleton-card')).toBeInTheDocument()
   })
 
-  it('should render svg card if type=sidebarDetail', () => {
-    render(<Skeleton type={'sidebarDetail'} />)
+  it('should render svg card if type=detail', () => {
+    render(<Skeleton type={'detail'} />)
 
-    expect(screen.getByRole('skeleton-sidebarDetail')).toBeInTheDocument()
+    expect(screen.getByRole('skeleton-detail')).toBeInTheDocument()
   })
 
   it('should render svg card if type=image', () => {

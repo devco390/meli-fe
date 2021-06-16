@@ -5,7 +5,7 @@ export const itemMock: IItem = {
   title: 'La Inteligencia Emocional - Daniel Goleman',
   price: {
     currency: 'ARS',
-    amount: 799,
+    amount: 25000,
     decimals: 2
   },
   picture: 'https://http2.mlstatic.com/D_975550-MLA43695622425_102020-I.jpg',
